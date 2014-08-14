@@ -1,3 +1,42 @@
+#sys has exit method to stop program
+import sys
+
+def getNumOfEachRank(pokerHand):
+    #store total number of each rank in the hand
+    numOfEachRank = [0]*13
+    
+    for i in range(len(pokerHand)):
+        if pokerHand[i]['rank'] == '2':
+            numOfEachRank[0] += 1
+        elif pokerHand[i]['rank'] == '3':
+            numOfEachRank[1] += 1
+        elif pokerHand[i]['rank'] == '4':
+            numOfEachRank[2] += 1
+        elif pokerHand[i]['rank'] == '5':
+            numOfEachRank[3] += 1
+        elif pokerHand[i]['rank'] == '6':  
+            numOfEachRank[4] += 1      
+        elif pokerHand[i]['rank'] == '7':
+            numOfEachRank[5] += 1
+        elif pokerHand[i]['rank'] == '8':
+            numOfEachRank[6] += 1
+        elif pokerHand[i]['rank'] == '9':
+            numOfEachRank[7] += 1
+        elif pokerHand[i]['rank'] == '10':
+            numOfEachRank[8] += 1
+        elif pokerHand[i]['rank'] == '11':
+            numOfEachRank[9] += 1
+        elif pokerHand[i]['rank'] == '12':
+            numOfEachRank[10] += 1
+        elif pokerHand[i]['rank'] == '13':
+            numOfEachRank[11] += 1
+        elif pokerHand[i]['rank'] =='14':
+            numOfEachRank[12] += 1
+        else:
+            sys.exit("Error: invalid rank of card.")
+    
+    return numOfEachRank
+            
 def onePair(pokerHand):
     #return true if there is a pair in the deck
     for i in range(len(pokerHand)-1):
@@ -7,6 +46,21 @@ def onePair(pokerHand):
     
     return False
 
+def twoPair(pokerHand):
+    
+    numOfEachRank = getNumOfEachRank(pokerHand)
+    
+    numSuitsWithMoreThanTwo = 0
+    
+    for i in range(len(numOfEachRank)):
+        if numOfEachRank[i] >= 2:
+            numSuitsWithMoreThanTwo += 1
+        
+    if numSuitsWithMoreThanTwo == 2:
+        return True
+    else:
+        return False
+            
 def convertToListDictionary(pokerHandList):
         
     pokerHandListDict = []
@@ -119,9 +173,10 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    rank = onePair(player1PokerHandListDict)
-    print(rank)
-    print(player1PokerHandListDict)
+    result = twoPair(player1PokerHandListDict)
+    if result:
+        print(player1PokerHandListDict)
+        print(result)
 '''
     winner = playPoker(player1PokerHandListDict, player2PokerHandListDict)
 
