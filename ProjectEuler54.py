@@ -2,10 +2,9 @@ def convertToListDictionary(pokerHandList):
         
     pokerHandDict = {}
     pokerHandListDict = []
+    
     for i in range(len(pokerHandList)):
-        pokerHandDict['rank'] = pokerHandList[i][0]
-        pokerHandDict['suit'] = pokerHandList[i][1]
-        pokerHandListDict.append(pokerHandDict)
+        pokerHandListDict.append({'suit':pokerHandList[i][1], 'rank':pokerHandList[i][0]})
 
     print(pokerHandListDict)
     return pokerHandListDict
