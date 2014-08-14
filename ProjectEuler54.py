@@ -70,6 +70,17 @@ def threeOfAKind(pokerHand):
         
     return False
 
+def fourOfAKind(pokerHand):
+    
+    numOfEachRank = getNumOfEachRank(pokerHand)
+    print(numOfEachRank)
+    for num in numOfEachRank:
+        if num == 4:
+            return True
+        
+    return False
+
+
 def convertToListDictionary(pokerHandList):
         
     pokerHandListDict = []
@@ -182,10 +193,11 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result = threeOfAKind(player1PokerHandListDict)
-    if result:
-        print(player1PokerHandListDict)
-        print(result)
+
+    
+result = fourOfAKind([{'suit':'A','rank':'2'},{'suit':'A','rank':'10'},{'suit':'A','rank':'10'},{'suit':'A','rank':'10'},{'suit':'A','rank':'10'}])
+print(result)
+
 '''
     winner = playPoker(player1PokerHandListDict, player2PokerHandListDict)
 
