@@ -87,6 +87,18 @@ def threeOfAKind(pokerHand):
         
     return False
 
+def straight(pokerHand):
+    
+    rankList = [int(pokerHand[i]['rank']) for i in range(len(pokerHand))]
+    rankList.sort()
+    
+    for i in range(len(rankList)-1):
+        
+        if (rankList[i] + 1) != rankList[i+1]:
+            return False
+    
+    return True
+
 def flush(pokerHand):
     numOfEachSuit = getNumOfEachSuit(pokerHand)
     for i in range(len(numOfEachSuit)):
@@ -218,11 +230,11 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result1 = onePair(player2PokerHandListDict)
+    result1 = straight(player1PokerHandListDict)
     if result1:
-        print(player2PokerHandListDict)
+        print(player1PokerHandListDict)
     
-result = flush([{'suit':'D','rank':'2'},{'suit':'D','rank':'10'},{'suit':'D','rank':'10'},{'suit':'D','rank':'10'},{'suit':'D','rank':'10'}])
+result = straight([{'suit':'D','rank':'2'},{'suit':'D','rank':'3'},{'suit':'D','rank':'5'},{'suit':'D','rank':'4'},{'suit':'D','rank':'6'}])
 print(result)
 
 '''
