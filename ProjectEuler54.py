@@ -1,16 +1,24 @@
+def onePair(pokerHand):
+    #return true if there is a pair in the deck
+    for i in range(len(pokerHand)-1):
+        for j in range(i+1,len(pokerHand)):
+            if pokerHand[i]['rank'] == pokerHand[j]['rank']:
+                return True
+    
+    return False
+
 def convertToListDictionary(pokerHandList):
         
-    pokerHandDict = {}
     pokerHandListDict = []
     
     for i in range(len(pokerHandList)):
         pokerHandListDict.append({'suit':pokerHandList[i][1], 'rank':pokerHandList[i][0]})
 
-    print(pokerHandListDict)
     return pokerHandListDict
 
 def getHighCard(pokerHandListDict):
     highCard = 0
+    
     for i in range(len(pokerHandListDict)):
         if pokerHandListDict[i]['rank'] == 'T':
             pokerHandListDict[i]['rank'] = '10'
@@ -44,9 +52,9 @@ def compareHighCards(player1PokerHandListDict,player2PokerHandListDict):
         winner = -1
     
     return winner
-
+'''
 def rankHand(pokerHand):
-    ''' High Card => rank = 1
+     High Card => rank = 1
         One Pair => rank = 2
         Two Pairs => rank = 3
         Three of a Kind => rank = 4
@@ -56,7 +64,7 @@ def rankHand(pokerHand):
         Four of a Kind => rank = 8
         Straight Flush => rank = 9
         Royal Flush => rank = 10
-    '''
+    
     rank = -1
     if royalFlush(pokerHand):
         rank = 10
@@ -109,9 +117,14 @@ for line in pokerFile:
   
     player1PokerHandListDict = convertToListDictionary(player1PokerHandList)
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
+
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    rank = rankHand(player1PokerHandListDict)
-'''    winner = playPoker(player1PokerHandListDict, player2PokerHandListDict)
+    rank = onePair(player1PokerHandListDict)
+    print(rank)
+    print(player1PokerHandListDict)
+'''
+    winner = playPoker(player1PokerHandListDict, player2PokerHandListDict)
+
     if winner == 1:
         numPlayer1Wins += 1
     elif winner == 2:
