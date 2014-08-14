@@ -36,6 +36,22 @@ def getNumOfEachRank(pokerHand):
             sys.exit("Error: invalid rank of card.")
     
     return numOfEachRank
+
+def getNumOfEachSuit(pokerHand):
+    numOfEachSuit = [0]*4
+    for i in range(len(pokerHand)):
+        if pokerHand[i]['suit'] == 'C':
+            numOfEachSuit[0] += 1
+        elif pokerHand[i]['suit'] == 'D':
+            numOfEachSuit[1] += 1
+        elif pokerHand[i]['suit'] == 'H':
+            numOfEachSuit[2] += 1
+        elif pokerHand[i]['suit'] == 'S':
+            numOfEachSuit[3] += 1
+        else:
+            sys.exit("Error: invalid suit of card.")
+    
+    return numOfEachSuit
             
 def onePair(pokerHand):
     #return true if there is a pair in the deck
@@ -68,6 +84,14 @@ def threeOfAKind(pokerHand):
         if num == 3:
             return True
         
+    return False
+
+def flush(pokerHand):
+    numOfEachSuit = getNumOfEachSuit(pokerHand)
+    for i in range(len(numOfEachSuit)):
+        if numOfEachSuit[i] == 5:
+            return True
+    
     return False
 
 def fourOfAKind(pokerHand):
@@ -193,9 +217,11 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-
+    result1 = flush(player2PokerHandListDict)
+    if result1:
+        print(player2PokerHandListDict)
     
-result = fourOfAKind([{'suit':'A','rank':'2'},{'suit':'A','rank':'10'},{'suit':'A','rank':'10'},{'suit':'A','rank':'10'},{'suit':'A','rank':'10'}])
+result = flush([{'suit':'D','rank':'2'},{'suit':'D','rank':'10'},{'suit':'D','rank':'10'},{'suit':'D','rank':'10'},{'suit':'D','rank':'10'}])
 print(result)
 
 '''
