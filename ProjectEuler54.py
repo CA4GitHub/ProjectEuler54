@@ -100,10 +100,18 @@ def straight(pokerHand):
     return True
 
 def flush(pokerHand):
+    
     numOfEachSuit = getNumOfEachSuit(pokerHand)
     for i in range(len(numOfEachSuit)):
         if numOfEachSuit[i] == 5:
             return True
+    
+    return False
+
+def fullHouse(pokerHand):
+    
+    if onePair(pokerHand) and threeOfAKind(pokerHand):
+        return True
     
     return False
 
@@ -246,11 +254,11 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result1 = royalFlush(player1PokerHandListDict)
+    result1 = fullHouse(player2PokerHandListDict)
     if result1:
-        print(player1PokerHandListDict)
+        print(player2PokerHandListDict)
     
-result = royalFlush([{'suit':'D','rank':'14'},{'suit':'D','rank':'13'},{'suit':'D','rank':'12'},{'suit':'D','rank':'11'},{'suit':'D','rank':'10'}])
+result = fullHouse([{'suit':'H','rank':'14'},{'suit':'D','rank':'14'},{'suit':'D','rank':'12'},{'suit':'D','rank':'12'},{'suit':'D','rank':'12'}])
 print(result)
 
 '''
