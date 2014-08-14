@@ -60,7 +60,16 @@ def twoPair(pokerHand):
         return True
     else:
         return False
-            
+    
+def threeOfAKind(pokerHand):
+    
+    numOfEachRank = getNumOfEachRank(pokerHand)
+    for num in numOfEachRank:
+        if num == 3:
+            return True
+        
+    return False
+
 def convertToListDictionary(pokerHandList):
         
     pokerHandListDict = []
@@ -173,7 +182,7 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result = twoPair(player1PokerHandListDict)
+    result = threeOfAKind(player1PokerHandListDict)
     if result:
         print(player1PokerHandListDict)
         print(result)
