@@ -117,6 +117,12 @@ def fourOfAKind(pokerHand):
         
     return False
 
+def straightFlush(pokerHand):
+    
+    if flush(pokerHand) and straight(pokerHand):
+        return True
+    
+    return False
 
 def convertToListDictionary(pokerHandList):
         
@@ -230,11 +236,11 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result1 = straight(player1PokerHandListDict)
+    result1 = straightFlush(player1PokerHandListDict)
     if result1:
         print(player1PokerHandListDict)
     
-result = straight([{'suit':'D','rank':'2'},{'suit':'D','rank':'3'},{'suit':'D','rank':'5'},{'suit':'D','rank':'4'},{'suit':'D','rank':'6'}])
+result = straightFlush([{'suit':'D','rank':'2'},{'suit':'D','rank':'3'},{'suit':'D','rank':'5'},{'suit':'D','rank':'4'},{'suit':'D','rank':'6'}])
 print(result)
 
 '''
