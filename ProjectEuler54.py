@@ -56,14 +56,11 @@ def getNumOfEachSuit(pokerHand):
 def onePair(pokerHand):
     #return true if there is a pair in the deck
     numOfEachRank = getNumOfEachRank(pokerHand)
-    maxNum = 0
-    for num in numOfEachRank:
-        if num > maxNum:
-            maxNum = num
-            
-    if maxNum == 2:
-        return True
     
+    for num in numOfEachRank:
+        if num == 2:
+            return True
+        
     return False
 
 def twoPair(pokerHand):
