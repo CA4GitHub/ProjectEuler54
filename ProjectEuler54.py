@@ -124,6 +124,16 @@ def straightFlush(pokerHand):
     
     return False
 
+def royalFlush(pokerHand):
+    
+    rankList = [int(pokerHand[i]['rank']) for i in range(len(pokerHand))]
+    
+    #if straightFlush contains an 'A' (e.g. rank '14'), it's a royal flush
+    if straightFlush(pokerHand) and (14 in rankList):
+        return True
+    
+    return False
+
 def convertToListDictionary(pokerHandList):
         
     pokerHandListDict = []
@@ -236,11 +246,11 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result1 = straightFlush(player1PokerHandListDict)
+    result1 = royalFlush(player1PokerHandListDict)
     if result1:
         print(player1PokerHandListDict)
     
-result = straightFlush([{'suit':'D','rank':'2'},{'suit':'D','rank':'3'},{'suit':'D','rank':'5'},{'suit':'D','rank':'4'},{'suit':'D','rank':'6'}])
+result = royalFlush([{'suit':'D','rank':'14'},{'suit':'D','rank':'13'},{'suit':'D','rank':'12'},{'suit':'D','rank':'11'},{'suit':'D','rank':'10'}])
 print(result)
 
 '''
