@@ -55,10 +55,14 @@ def getNumOfEachSuit(pokerHand):
             
 def onePair(pokerHand):
     #return true if there is a pair in the deck
-    for i in range(len(pokerHand)-1):
-        for j in range(i+1,len(pokerHand)):
-            if pokerHand[i]['rank'] == pokerHand[j]['rank']:
-                return True
+    numOfEachRank = getNumOfEachRank(pokerHand)
+    maxNum = 0
+    for num in numOfEachRank:
+        if num > maxNum:
+            maxNum = num
+            
+    if maxNum == 2:
+        return True
     
     return False
 
@@ -217,7 +221,7 @@ for line in pokerFile:
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
 
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    result1 = flush(player2PokerHandListDict)
+    result1 = onePair(player2PokerHandListDict)
     if result1:
         print(player2PokerHandListDict)
     
