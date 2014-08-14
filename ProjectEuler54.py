@@ -45,11 +45,47 @@ def compareHighCards(player1PokerHandListDict,player2PokerHandListDict):
         winner = -1
     
     return winner
-'''
-def playPoker(player1PokerHandDict, player2PokerHandDict):
+
+def rankHand(pokerHand):
+    ''' High Card => rank = 1
+        One Pair => rank = 2
+        Two Pairs => rank = 3
+        Three of a Kind => rank = 4
+        Straight => rank = 5
+        Flush => rank = 6
+        Full House => rank = 7
+        Four of a Kind => rank = 8
+        Straight Flush => rank = 9
+        Royal Flush => rank = 10
+    '''
+    rank = -1
+    if royalFlush(pokerHand):
+        rank = 10
+    elif straightFlush(pokerHand):
+        rank = 9
+    elif fourOfAKind(pokerHand):
+        rank = 8
+    elif fullHouse(pokerHand):
+        rank = 7
+    elif flush(pokerHand):
+        rank = 6
+    elif straight(pokerHand):
+        rank = 5
+    elif threeOfAKind(pokerHand):
+        rank = 4
+    elif twoPairs(pokerHand):
+        rank = 3
+    elif onePair(pokerHand):
+        rank = 2
+    else:
+        rank = 1
+        
+    return rank
+
+def playPoker(player1PokerHandListDict, player2PokerHandListDict):
     
-    player1HandRank = getRankedHand(player1PokerHandDict)
-    player2HandRank = getRankedHand(player2PokerHandDict)
+    player1HandRank = rankHand(player1PokerHandDict)
+    player2HandRank = rankHand(player2PokerHandDict)
     
     if player1HandRank == player2HandRank:
         winner = compareHighCards(player1PokerHandDict,player2PokerHandDict)
@@ -75,8 +111,8 @@ for line in pokerFile:
     player1PokerHandListDict = convertToListDictionary(player1PokerHandList)
     player2PokerHandListDict = convertToListDictionary(player2PokerHandList)
     winner = compareHighCards(player1PokerHandListDict,player2PokerHandListDict)
-    
-'''    winner = playPoker(player1PokerHandDict, player2PokerHandDict)
+    rank = rankHand(player1PokerHandListDict)
+'''    winner = playPoker(player1PokerHandListDict, player2PokerHandListDict)
     if winner == 1:
         numPlayer1Wins += 1
     elif winner == 2:
